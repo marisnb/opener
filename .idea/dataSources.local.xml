@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails opener: test" uuid="0d05ffda-2c3c-41a4-804b-bd32b1e8bd8d">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" family="POSTGRES" exact-version="0.0" />
+    </data-source>
+    <data-source name="Rails opener: production" uuid="f9ff752c-650f-4dca-bd49-d2703d3bfa0e">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" family="POSTGRES" exact-version="0.0" />
+      <user-name>opener</user-name>
+    </data-source>
+    <data-source name="Rails opener: development" uuid="5d4b7784-6fb1-465f-a034-c822d07fbddb">
+      <database-info product="PostgreSQL" version="10.6 (Ubuntu 10.6-0ubuntu0.18.04.1)" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.2.2" family="POSTGRES" exact-version="10.6">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <user-name>postgres</user-name>
+      <introspection-schemas>@:@</introspection-schemas>
+    </data-source>
+  </component>
+</project>
