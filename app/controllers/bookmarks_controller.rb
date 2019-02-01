@@ -1,5 +1,6 @@
 class BookmarksController < ApplicationController
   def index
+    @bookmarks = current_user.bookmarks.all
   end
 
   def new
@@ -7,9 +8,11 @@ class BookmarksController < ApplicationController
   end
 
   def create
-    @bookmark = Bookmark.new(bookmark_params)
-    if @bookmark.save
-      puts "-------------------------"
+    @article = Article.find(params[:articles_id])
+    @user = User.new
+    @user.bookmarked_articles << @article
+    if current_user.save
+      redirect_to "/articles"
     end
   end
 
@@ -18,7 +21,8 @@ class BookmarksController < ApplicationController
   end
 
   private
-    def bookmark_params
-      params.require(:bookmark).permit(@current_user,@article)
-    end
+    # def bookmark_params
+    #   params.require(:bookmark).permit()
+    #   puts params
+    # end
 end

@@ -1,2 +1,12 @@
-<h1>Bookmarks#index</h1>
-<p>Find me in app/views/bookmarks/index.html.erb</p>
+<div class="container">
+  <div class="container col-9 mt-3">
+    <% @bookmarks.each do |bookmark| %>
+      <div class=" card box-s-secondary px-3 py-2 my-2">
+        <h4><%= bookmark.article.name %></h4>
+        <p><%= bookmark.article.description %></p>
+         <span class="text-right"><%= link_to "unbookmark",bookmark_path(:id => bookmark.article.id, type: "unbookmark"), :method=>"put"%></span>
+        <p class="op-font-text text-danger">Author : <%= bookmark.article.user.user_name %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

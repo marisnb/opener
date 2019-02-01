@@ -1,3 +1,4 @@
+//= require material_icons
 @import "bootstrap";
 
 .box-s-primary {
@@ -11,4 +12,13 @@
 }
 .border-secondary {
   border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.op-font-text {
+  font-size: 11px;
+  opacity: 0.5;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+}
+.d-content {
+  display: contents;
 }

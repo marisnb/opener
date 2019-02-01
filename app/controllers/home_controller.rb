@@ -1,6 +1,9 @@
 class HomeController < ApplicationController
   def index
-    @user = User.find(session[:user_id])
+    @articles = Article.without_user(current_user)
   end
 
+  def show
+    @articles = Article.without_user(current_user)
+  end
 end

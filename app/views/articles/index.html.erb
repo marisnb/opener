@@ -1,13 +1,15 @@
 <div class="container">
-  <div class="container col-8 mt-3">
+  <div class="container col-9 mt-3">
     <% @articles.each do |article| %>
-      <div class=" card box-s-secondary px-3 py-2">
-        <h5><%= article.user.user_name %></h5>
-        <%= article.name %>
-        <%= article.created_at %>
-        <%= article.description %>
-        <span class="text-right"><%= link_to "Delete", {:action=> "destroy",:id => article.id}, :method=>"delete" %></span>
-        <span class="text-right"><%= link_to "bookmark", {:action=> "set_details",:article_id => article.id,:user_id=>@user.id} %></span>
+      <div class=" card box-s-secondary px-3 py-2 my-2">
+        <h4><%= article.name %></h4>
+        <p><%= article.description %></p>
+        <p class="op-font-text text-danger">Author : <%= article.user.user_name %></p>
+        <span class="text-right d-content text-danger">
+          <%= link_to "delete", {:action=> "destroy",:id => article.id}, :method=>"delete" %>
+<!--           <i class="material-icons d-content text-danger md-18">delete</i>-->
+          <%# end %>
+        </span>
       </div>
     <% end %>
   </div>

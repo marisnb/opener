@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  is_enabled: false
-  users: one
-  articles: one
+  subject: MyString
+  user: one
+  article: one
 
 two:
-  is_enabled: false
-  users: two
-  articles: two
+  subject: MyString
+  user: two
+  article: two

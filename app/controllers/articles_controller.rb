@@ -1,12 +1,13 @@
 class ArticlesController < ApplicationController
+  #before_action :find_article, only: [:show, :edit, :update, :destroy]
 
   def new
-    @article = Article.new
+    #@article = Article.new
+    @article = current_user.articles.build
   end
 
   def index
-    current_user
-    @articles = @current_user.articles.all
+    @articles = current_user.articles.all
   end
 
   def create
@@ -30,13 +31,29 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def set_details
-    BookmarksController.get_details(data)
+  def bookmark
+    type = params[:type]
+    @article = Article.find(params[:id])
+    if type == "bookmark"
+      current_user.bookmarked_articles << @article
+      if current_user.save
+        redirect_to "/articles"
+      end
+    elsif type == "unbookmark"
+      current_user.bookmarked_articles.delete(@article)
+      redirect_to "/articles"
+    else
+      # Type missing, nothing happens
+      redirect_to :back, notice: 'Nothing happened.'
+    end
   end
 
   private
   def article_params
     params.require(:article).permit(:name,:description)
+  end
+  def find_article
+    @article = Article.find(params[:id])
   end
 
 end

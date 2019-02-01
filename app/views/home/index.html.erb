@@ -1,4 +1,23 @@
-<h1 class="container px-5">
-  hai
-</h1>
-<%#= @user.user_name %>
+<div class="container">
+  <div class="container col-9 mt-3">
+    <% @articles.each do |article| %>
+      <div class=" card box-s-secondary px-3 py-2 my-2">
+        <h4><%= article.name %></h4>
+        <p><%= article.description %></p>
+        <% if article.bookmarks.length != 0 %>
+          <% article.bookmarks.each do |bookmark| %>
+            <% if bookmark.article_id == article.id %>
+              <span class="text-right"><%= link_to "unbookmark",bookmark_path(:id => article.id, type: "unbookmark"), :method=>"put"%></span>
+            <% else %>
+              <span class="text-right"><%= link_to "bookmark",bookmark_path(:id => article.id, type: "bookmark"), :method=>"put"%></span>
+            <% end %>
+          <% end %>
+        <% else %>
+          <span class="text-right"><%= link_to "bookmark",bookmark_path(:id => article.id, type: "bookmark"), :method=>"put"%></span>
+        <% end %>
+        <p class="op-font-text text-danger">Author : <%= article.user.user_name %></p>
+        <!--          <span class="text-right"><%#= link_to "Delete", {:action=> "destroy",:id => article.id}, :method=>"delete" %></span>-->
+      </div>
+    <% end %>
+  </div>
+</div>
