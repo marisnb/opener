@@ -22,3 +22,25 @@
 .d-content {
   display: contents;
 }
+.d-card-text {
+  font-size: 14px;
+  opacity: 0.6;
+}
+.h-165-px {
+  min-height: 165px;
+}
+.b-rad-10px {
+  border-radius: 10px;
+}
+.bg-aliceblue {
+  background-color: aliceblue;
+}
+.img-sha {
+    border-radius: 40px;
+    filter:drop-shadow(1px 0px 1px gray)
+}
+.dropdown-sha {
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.25), 0 0 1px rgba(0,0,0,.35);
+  box-shadow: 0 1px 2px rgba(0,0,0,.25), 0 0 1px rgba(0,0,0,.35);
+}

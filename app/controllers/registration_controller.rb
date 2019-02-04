@@ -7,7 +7,7 @@ class RegistrationController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to  controller: "sessions" , action: "index"
+      render "session"
     else
       redirect_to  controller: "sessions" , action: "index"
     end

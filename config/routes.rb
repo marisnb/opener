@@ -8,9 +8,11 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   put '/bookmark',  to: 'articles#bookmark'
+  #get '/articles',    to: 'articles#index'
+  #get '/articles/:id', to: 'articles#show'
 
   #post   '/bookmarks',   to: 'bookmarks#create'
-  resources :registration,:home,:sessions,:articles,:bookmarks
+  resources :registration,:home,:sessions,:articles,:bookmarks, :comment
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

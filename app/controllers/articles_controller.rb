@@ -1,9 +1,16 @@
 class ArticlesController < ApplicationController
-  #before_action :find_article, only: [:show, :edit, :update, :destroy]
+  before_action :find_article, only: [:show, :edit, :update, :destroy]
 
   def new
-    #@article = Article.new
-    @article = current_user.articles.build
+    @article = Article.new
+    @comment = Comment.new
+    #@article = current_user.articles.build
+  end
+
+  def show
+    puts "----------------------------"
+    @article = Article.find(params[:id])
+    #@article = current_user.articles.build
   end
 
   def index
@@ -48,6 +55,7 @@ class ArticlesController < ApplicationController
     end
   end
 
+
   private
   def article_params
     params.require(:article).permit(:name,:description)
@@ -55,5 +63,4 @@ class ArticlesController < ApplicationController
   def find_article
     @article = Article.find(params[:id])
   end
-
 end

@@ -26,7 +26,19 @@
           <%end %>
         </li>
         <li class="nav-item">
-          <%= link_to "Log out", logout_path, method: :delete %>
+          <div class="dropdown">
+            <img crop="fill" class="img-sha mx-2 dropdown-toggle"
+                 src="/assets/male-user-b680d8e72dedb798709ef1c75a2318002e65fa1da67ff43db9947ff96a935bf1.png"
+                 width="40" height="40" data-toggle="dropdown">
+              <span class="caret"></span></button>
+            <ul class="dropdown-menu box-s-primary b-rad-10px p-3">
+              <li><span>New story</span></li>
+              <li><span>Profile</span></li>
+              <li><span>Log out</span></li>
+            </ul>
+          </div>
+
+          <%#= link_to "Log out", logout_path, method: :delete %>
         </li>
       </ul>
     </div>

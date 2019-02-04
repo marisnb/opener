@@ -81,5 +81,7 @@ test:
 production:
   <<: *default
   database: opener_production
-  username: opener
-  password: <%= ENV['OPENER_DATABASE_PASSWORD'] %>
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432

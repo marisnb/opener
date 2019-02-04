@@ -1,9 +1,9 @@
 <div class="container">
   <div class="container col-9 mt-3">
     <% @articles.each do |article| %>
-      <div class=" card box-s-secondary px-3 py-2 my-2">
-        <h4><%= article.name %></h4>
-        <p><%= article.description %></p>
+      <div class="box-s-secondary px-3 py-2 my-2">
+        <h4 class="text-black"><%= link_to "#{article.name}","#{articles_path}/#{article.id}" %></h4>
+        <p class="d-card-text"><%= article.description %></p>
         <% if article.bookmarks.length != 0 %>
           <% article.bookmarks.each do |bookmark| %>
             <% if bookmark.article_id == article.id %>
@@ -15,7 +15,8 @@
         <% else %>
           <span class="text-right"><%= link_to "bookmark",bookmark_path(:id => article.id, type: "bookmark"), :method=>"put"%></span>
         <% end %>
-        <p class="op-font-text text-danger">Author : <%= article.user.user_name %></p>
+        <p class="op-font-text text-danger"><%= image_tag("male-user.png", :size => "40x40", :crop => :fill ,:class=>"img-sha mx-2" ) %>
+          <%= article.user.user_name %></p>
         <!--          <span class="text-right"><%#= link_to "Delete", {:action=> "destroy",:id => article.id}, :method=>"delete" %></span>-->
       </div>
     <% end %>

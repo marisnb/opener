@@ -3,8 +3,9 @@
     <% @articles.each do |article| %>
       <div class=" card box-s-secondary px-3 py-2 my-2">
         <h4><%= article.name %></h4>
-        <p><%= article.description %></p>
-        <p class="op-font-text text-danger">Author : <%= article.user.user_name %></p>
+        <p class="d-card-text"><%= article.description %></p>
+        <p class="op-font-text text-danger"><%= image_tag("male-user.png", :size => "40x40", :crop => :fill ,:class=>"img-sha mx-2" ) %>
+          <%= article.user.user_name %></p>
         <span class="text-right d-content text-danger">
           <%= link_to "delete", {:action=> "destroy",:id => article.id}, :method=>"delete" %>
 <!--           <i class="material-icons d-content text-danger md-18">delete</i>-->
