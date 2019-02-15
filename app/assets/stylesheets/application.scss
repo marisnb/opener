@@ -1,6 +1,9 @@
 //= require material_icons
 @import "bootstrap";
-
+body{
+  font-family: "Raleway", Arial, sans-serif;
+  background-color: #F1F3F6;
+}
 .box-s-primary {
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
 }
@@ -43,4 +46,12 @@
   border-radius: 3px;
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.25), 0 0 1px rgba(0,0,0,.35);
   box-shadow: 0 1px 2px rgba(0,0,0,.25), 0 0 1px rgba(0,0,0,.35);
+}
+.font-12-px{
+  font-size: 12px;
+}
+.new_relationship,.edit_relationship{
+display: inline;
+position: absolute;
+padding: 0 10px;
 }

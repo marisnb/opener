@@ -1,0 +1,13 @@
+<div class="container">
+    <hr>
+      <h6 class="py-2">Responses</h6>
+    <%= form_for Comment.new,url: comment_index_path(:id=>@article.id,:tag=>"Comment"), method: :post do |form| %>
+      <div class="field form-group">
+        <%= form.text_area :content ,class:"form-control h-165-px", placeholder: "Write a response..."%>
+      </div>
+      <div class="actions form-group w-25">
+        <%= form.submit "Post Your Comment", class:"form-control b-primary mt-3 btn btn-outline-dark" %>
+      </div>
+    <% end %>
+</div>
+

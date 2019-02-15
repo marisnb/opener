@@ -6,6 +6,10 @@
         <p class="d-card-text"><%= article.description %></p>
         <p class="op-font-text text-danger"><%= image_tag("male-user.png", :size => "40x40", :crop => :fill ,:class=>"img-sha mx-2" ) %>
           <%= article.user.user_name %></p>
+        <% if article.image_path? %>
+          <%= image_tag article.image_path, alt: '' %>
+        <% end %>
+        <%= article.image_path %>
         <span class="text-right d-content text-danger">
           <%= link_to "delete", {:action=> "destroy",:id => article.id}, :method=>"delete" %>
 <!--           <i class="material-icons d-content text-danger md-18">delete</i>-->

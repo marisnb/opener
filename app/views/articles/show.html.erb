@@ -1,0 +1,36 @@
+<div class="container box-s-secondary bg-white">
+  <div class="row mt-3">
+    <div class="col-2 text-center">
+      <span class="text-right">
+        <% if @article.comments.select{|comment|comment.tag == "Like"}.size != 0  %>
+          <%= @article.comments.select{|comment|comment.tag == "Like"}.size %>
+          <% @article.comments.select{|c|c.tag == "Like"}.each do |comment| %>
+          <% if comment.user_id == current_user.id %>
+            <%= link_to "UnLike",comment_index_path(:id => @article.id, :tag => "Like"), :method=>"post"%>
+          <%else %>
+            <%= link_to "Like",comment_index_path(:id => @article.id, :tag => "Like"), :method=>"post"%>
+          <%end %>
+        <% end %>
+          <%else %>
+        <%= link_to "Like",comment_index_path(:id => @article.id, :tag => "Like"), :method=>"post"%>
+        <%end %>
+      </span><br>
+    </div>
+    <div class="col-9">
+    <div class="px-3 py-2 my-2">
+        <h4><%= @article.name %></h4>
+        <p class="d-card-text"><%= @article.description %></p>
+        <p class="op-font-text text-danger">Author : <%= @article.user.user_name %></p>
+      <%= @article.comments.select{|comment|comment.tag == "Comment"}.size %> Comment
+    </div>
+      <%= render "comment/form", @comment %>
+      <hr>
+    <% @article.comments.select{|c|c.tag == "Comment"}.each do |comment| %>
+      <div class="px-3 py-2 mb-3 mt-2 bg-aliceblue b-rad-10px">
+        <span class="text-success"><%= comment.user.user_name %></span>
+        <p class="pt-3"><%= comment.content %></p>
+      </div>
+    <% end %>
+  </div>
+  </div>
+</div>

@@ -8,8 +8,8 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    puts "----------------------------"
     @article = Article.find(params[:id])
+    #@comment_count = @article.comments.select{|comment|comment.tag == "Comment"}.size
     #@article = current_user.articles.build
   end
 
@@ -19,7 +19,14 @@ class ArticlesController < ApplicationController
 
   def create
     @user = User.find(session[:user_id])
-    @article = @user.articles.new(article_params)
+    img_file = params[:article][:image_path]
+    file_name = "article#{Article.count + 1}"
+     File.open(Rails.root.join('app', 'assets','images','uploads', img_file.original_filename), 'wb') do |file|
+       file.write(img_file.read)
+       #File.rename(file, file_name + File.extname(file))
+     end
+    path = "uploads/#{img_file.original_filename}"
+    @article = @user.articles.new(article_params.merge(image_path: path))
     if @article.save
       redirect_to "/articles"
     else

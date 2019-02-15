@@ -1,23 +1,51 @@
 <div class="container">
   <div class="container col-9 mt-3">
     <% @articles.each do |article| %>
-      <div class="box-s-secondary px-3 py-2 my-2">
-        <h4 class="text-black"><%= link_to "#{article.name}","#{articles_path}/#{article.id}" %></h4>
-        <p class="d-card-text"><%= article.description %></p>
-        <% if article.bookmarks.length != 0 %>
-          <% article.bookmarks.each do |bookmark| %>
-            <% if bookmark.article_id == article.id %>
-              <span class="text-right"><%= link_to "unbookmark",bookmark_path(:id => article.id, type: "unbookmark"), :method=>"put"%></span>
+      <div class="box-s-secondary px-3 py-2 my-2 bg-white">
+        <h4 class="text-black"><%= link_to "#{article.name}","#{articles_path}/#{article.id}" ,class:"text-dark" %></h4>
+        <div class="media">
+          <span class="media-left">
+            <%= image_tag("male-user.png", :size => "40x40", :crop => :fill ,:class=>"img-sha mr-2" ) %>
+          </span>
+          <div class="media-body">
+            <span class="media-heading text-dark d-inline"><%= article.user.user_name %></span>
+            <% if current_user.following?(article.user) %>
+              <%= form_for(current_user.active_relationships.find_by(followed_id: article.user.id),
+                           html: { method: :delete }) do |f|%>
+                <%= f.submit "Unfollow", class: "badge d-inline-block border border-info text-info bg-white" %>
+              <% end %>
+            <% else %>
+              <%= form_for(current_user.active_relationships.build) do |f|%>
+                <div><%= hidden_field_tag :followed_id, article.user.id %></div>
+                <%= f.submit "Follow", class: "badge d-inline-block border border-info text-info bg-white" %>
+              <% end %>
+            <% end %>
+            <%= render 'follow_form' if logged_in?%>
+<!--            <a href="#" class="badge border border-info text-info">Follow</a>-->
+            <p class="media-heading text-dark font-12-px"><%= article.created_at.strftime("%m/%d/%y") %></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-9">
+            <p class="d-card-text"><%= article.description.truncate_words(30, omission: '... (continued)') %></p>
+            <% if article.bookmarks.length != 0 %>
+              <% article.bookmarks.each do |bookmark| %>
+                <% if bookmark.article_id == article.id %>
+                  <span class="text-right"><%= link_to "unbookmark",bookmark_path(:id => article.id, type: "unbookmark"), :method=>"put"%></span>
+                <% else %>
+                  <span class="text-right"><%= link_to "bookmark",bookmark_path(:id => article.id, type: "bookmark"), :method=>"put"%></span>
+                <% end %>
+              <% end %>
             <% else %>
               <span class="text-right"><%= link_to "bookmark",bookmark_path(:id => article.id, type: "bookmark"), :method=>"put"%></span>
             <% end %>
+          </div>
+          <div class="col-3">
+            <% if article.image_path? %>
+              <%= image_tag(article.image_path, :crop => :fill ,:class=>"mx-2 w-100" ) %>
           <% end %>
-        <% else %>
-          <span class="text-right"><%= link_to "bookmark",bookmark_path(:id => article.id, type: "bookmark"), :method=>"put"%></span>
-        <% end %>
-        <p class="op-font-text text-danger"><%= image_tag("male-user.png", :size => "40x40", :crop => :fill ,:class=>"img-sha mx-2" ) %>
-          <%= article.user.user_name %></p>
-        <!--          <span class="text-right"><%#= link_to "Delete", {:action=> "destroy",:id => article.id}, :method=>"delete" %></span>-->
+          </div>
+        </div>
       </div>
     <% end %>
   </div>

@@ -16,6 +16,11 @@
           <%end %>
         </li>
         <li class="nav-item mx-2">
+          <%= link_to new_article_url do %>
+            <%= material_icon.search %>
+          <%end %>
+        </li>
+        <li class="nav-item mx-2">
           <%= link_to articles_path do %>
             <%= material_icon.comment %>
           <%end %>
@@ -34,7 +39,8 @@
             <ul class="dropdown-menu box-s-primary b-rad-10px p-3">
               <li><span>New story</span></li>
               <li><span>Profile</span></li>
-              <li><span>Log out</span></li>
+              <li class="text-dark">
+                <%= link_to "Log out", logout_path, method: :delete, class:"text-dark" %></li>
             </ul>
           </div>
 
